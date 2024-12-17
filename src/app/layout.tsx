@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: "KIMOTIFY",
   description: "Automate DMs and Comments on Social media platforms",
 };
-
+<meta name="apple-mobile-web-app-title" content="Kimotify" />
 export default function RootLayout({
   children,
 }: Readonly<{

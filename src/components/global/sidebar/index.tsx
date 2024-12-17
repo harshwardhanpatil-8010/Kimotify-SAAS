@@ -47,15 +47,16 @@ const Sidebar = ({ slug }: Props) => {
 
       
         <div className='px-3 flex flex-col gap-y-5 text-lg leading-none'>
-          <div className='flex gap-x-2 leading-none cursor-pointer'>
+          <div className='flex items-center gap-x-2 leading-none cursor-pointer'>
             <ClerkAuthState />
             <p className='text-[#9B9CA0]'>Profile</p>
           </div>
-          <div className='text-lg leading-none flex gap-x-3 text-[#a29f9f] cursor-pointer'>
+          <div className='text-lg leading-none flex items-center gap-x-3 text-[#a29f9f] cursor-pointer'>
             <IoMdHelpCircle />
             <p className='text-[#a29f9f]'>Help</p>
           </div>
         </div>
+
 
        
         <SubscriptionPlan type="FREE">
