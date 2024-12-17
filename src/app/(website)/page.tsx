@@ -4,6 +4,7 @@ import facebooklogo from '@/app/assets/facebook.png'
 import gmaillogo from '@/app/assets/gmail.png'
 import linkedinlogo from '@/app/assets/linkedin.png'
 import whatsapplogo from '@/app/assets/whatsapp.png'
+import logo from '@/app/assets/logo.png'
 import {
   Card,
   CardContent,
@@ -52,8 +53,14 @@ export default function Home() {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 
-              <div className="text-3xl font-bold tracking-tighter text-[#E93B84] uppercase select-none ">KIMOTIFY</div>
-
+              <div className="flex items-center gap-1 text-3xl font-bold tracking-tighter text-[#E93B84] uppercase select-none leading-none">
+              <Image 
+              src={logo} 
+              alt="Kimotify Logo" 
+              className="w-20 h-20 max-w-xs md:max-w-sm pointer-events-none"
+              />
+              <span>KIMOTIFY</span>
+              </div>
               </div>
               {/* <nav className="hidden space-x-6 text-sm text-blue-200 md:block">
                 <Link href="#features">Features</Link>
