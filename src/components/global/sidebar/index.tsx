@@ -21,7 +21,7 @@ const Sidebar = ({ slug }: Props) => {
       <div className="flex flex-col gap-y-5 w-full h-full p-3 bg-[#0e0e0e] bg-opacity-90 bg-clip-padding backdrop-filter backdrop--blur__safari backdrop-blur-3xl">
         
         {/* Logo and Title */}
-        <div className="flex items-center gap-2 text-3xl font-bold tracking-tighter text-[#E93B84] uppercase select-none leading-none">
+        <div className="flex items-center gap-0 text-3xl font-bold tracking-tighter text-[#E93B84] uppercase select-none leading-none">
           <div className="w-20 h-20 relative">
             <Image
               src={logo} 

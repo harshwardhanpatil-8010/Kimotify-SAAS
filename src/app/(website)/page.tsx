@@ -4,7 +4,11 @@ import facebooklogo from '@/app/assets/facebook.png'
 import gmaillogo from '@/app/assets/gmail.png'
 import linkedinlogo from '@/app/assets/linkedin.png'
 import whatsapplogo from '@/app/assets/whatsapp.png'
+import youtubelogo from '@/app/assets/youtube.png'
+import twitterlogo from '@/app/assets/twitter.png'
+import telegramlogo from '@/app/assets/telegram.png'
 import logo from '@/app/assets/logo.png'
+
 import {
   Card,
   CardContent,
@@ -53,7 +57,7 @@ export default function Home() {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 
-              <div className="flex items-center gap-1 text-3xl font-bold tracking-tighter text-[#E93B84] uppercase select-none leading-none">
+              <div className="flex items-center gap-0 text-3xl font-bold tracking-tighter text-[#E93B84] uppercase select-none leading-none">
               <Image 
               src={logo} 
               alt="Kimotify Logo" 
@@ -67,13 +71,13 @@ export default function Home() {
                 <Link href="#pricing">Pricing</Link>
                 <Link href="#about">About</Link>
               </nav> */}
-              <Button className="bg-white text-black hover:bg-blue-600">
+              <Button className="bg-gradient-to-br hover:opacity-80 text-white rounded-lg from-[#1c3dbf] font-medium to-[#941489] ">
                 <Link href="/dashboard">Login</Link>
               </Button>
             </div>
 
             <div className="mx-auto mt-16 max-w-3xl text-center">
-              <h1 className="text-4xl font-bold leading-tight tracking-tighter text-white sm:text-5xl md:text-6xl lg:text-7xl">
+              <h1 className="text-4xl font-bold leading-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
                 Transform Your Social Media Engagement with
               </h1>
               <h1 className="text-4xl font-bold leading-tight tracking-tighter text-[#E93B84] sm:text-5xl md:text-6xl lg:text-7xl">
@@ -105,6 +109,9 @@ export default function Home() {
             <Image src={linkedinlogo} alt="LinkedIn Logo" className="w-20 h-20 max-w-xs md:max-w-sm pointer-events-none" />
             <Image src={gmaillogo} alt="Gmail Logo" className="w-20 h-20 pointer-events-none max-w-xs md:max-w-sm" />
             <Image src={whatsapplogo} alt="Whatsapp Logo" className="w-20 h-20 pointer-events-none max-w-xs md:max-w-sm" />
+            <Image src={youtubelogo} alt="Youtube Logo" className="w-20 h-20 pointer-events-none max-w-xs md:max-w-sm" />
+            <Image src={twitterlogo} alt="Twitter Logo" className="w-20 h-20 pointer-events-none max-w-xs md:max-w-sm" />
+            <Image src={telegramlogo} alt="Telegram Logo" className="w-20 h-20 pointer-events-none max-w-xs md:max-w-sm" />
             </div>
 
           </div>
