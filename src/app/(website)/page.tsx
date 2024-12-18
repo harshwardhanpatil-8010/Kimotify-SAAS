@@ -7,6 +7,7 @@ import whatsapplogo from '@/app/assets/whatsapp.png'
 import youtubelogo from '@/app/assets/youtube.png'
 import twitterlogo from '@/app/assets/twitter.png'
 import telegramlogo from '@/app/assets/telegram.png'
+import salesforcelogo from '@/app/assets/salesforce.png'
 import logo from '@/app/assets/logo.png'
 
 import {
@@ -105,6 +106,7 @@ export default function Home() {
             </div>
             <div className="flex justify-center items-center space-x-4 px-8 md:px-4 mt-20 select-none">
             <Image src={instagramlogo} alt="Instagram Logo" className="w-20 h-20 max-w-xs md:max-w-sm pointer-events-none" />
+            <Image src={salesforcelogo} alt="Salesforce Logo" className="w-20 h-20 pointer-events-none max-w-xs md:max-w-sm" />
             <Image src={facebooklogo} alt="Facebook Logo" className="w-20 h-20 max-w-xs md:max-w-sm pointer-events-none" />
             <Image src={linkedinlogo} alt="LinkedIn Logo" className="w-20 h-20 max-w-xs md:max-w-sm pointer-events-none" />
             <Image src={gmaillogo} alt="Gmail Logo" className="w-20 h-20 pointer-events-none max-w-xs md:max-w-sm" />
@@ -112,6 +114,7 @@ export default function Home() {
             <Image src={youtubelogo} alt="Youtube Logo" className="w-20 h-20 pointer-events-none max-w-xs md:max-w-sm" />
             <Image src={twitterlogo} alt="Twitter Logo" className="w-20 h-20 pointer-events-none max-w-xs md:max-w-sm" />
             <Image src={telegramlogo} alt="Telegram Logo" className="w-20 h-20 pointer-events-none max-w-xs md:max-w-sm" />
+            
             </div>
 
           </div>
