@@ -1,48 +1,47 @@
-import { Button } from '@/components/ui/button';
-import Image from 'next/image';
-import React from 'react';
+'use client'
+//import { onOAuthInstagram } from '@/actions/integrations'
+import { onUserInfo } from '@/actions/user'
+import { Button } from '@/components/ui/button'
+import { useQuery } from '@tanstack/react-query'
+import React from 'react'
 
 type Props = {
-  title: string;
-  description: string;
-  icon: React.ReactNode | { src: string; [key: string]: any }; // Updated type for icon
-  strategy: 'Instagram' | 'CRM';
-};
+  title: string
+  description: string
+  icon: React.ReactNode
+  strategy: 'INSTAGRAM' | 'CRM'
+}
 
-const IntegrationCard = ({ title, description, icon, strategy }: Props) => {
+const IntegrationCard = ({ description, icon, strategy, title }: Props) => {
+
+ //const onInstaOAuth = () => onOAuthInstagram(strategy)
+
+  const { data } = useQuery({
+    queryKey: ['user-profile'],
+    queryFn: onUserInfo,
+  })
+
+  const integrated = data?.data?.integrations.find(
+    (integration) => integration.name === strategy
+  )
+
   return (
-    <div className="border-2 border-[#0afbff] rounded-2xl p-5 flex items-center justify-between bg-gradient-to-br from-[#000000] to-[#000000] shadow-md gap-4">
-      {/* Icon Rendering */}
-      <div className="w-12 h-12 flex items-center justify-center flex-shrink-0">
-        {typeof icon === 'object' && 'src' in icon ? (
-          <Image
-            src={icon.src} 
-            alt={`${title} Icon`}
-            width={48}
-            height={48}
-            className="object-contain"
-          />
-        ) : (
-          icon 
-        )}
-      </div>
-
-      {/* Card Details */}
+    <div className="border-2 border-[#3352CC] rounded-2xl gap-x-5 p-5 flex items-center justify-between">
+      {icon}
       <div className="flex flex-col flex-1">
-        <h3 className="text-xl font-bold text-[#fff]">{title}</h3>
-        <p className="text-[#a2a0a0] text-base">
-          {description}
-        </p>
+        <h3 className="text-xl"> {title}</h3>
+        <p className="text-[#9D9D9D] text-base ">{description}</p>
       </div>
-
-        <Button 
+      <Button
         // onClick={onInstaOAuth}
         // disabled={integrated?.name === strategy}
-        className='bg-gradient-to-br text-white rounded-xl text-lg from-[#3352CC] font-medium to-[#1C2D70] hover:opacity-70 transition duration-100'>
-            {/* {integrated ? 'Connected' : 'Connect'} */}
-            Connect
-        </Button>
+        className="bg-gradient-to-br text-white rounded-full text-lg from-[#3352CC] font-medium to-[#1C2D70] hover:opacity-70 transition duration-100"
+      >
+        {/* {integrated ? 'Connected' : 'Connect'} */}
+        connect
+      </Button>
     </div>
   )
 }
+
 export default IntegrationCard
