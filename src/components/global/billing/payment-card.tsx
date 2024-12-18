@@ -48,7 +48,7 @@ const PaymentCard = ({ current, label, landing }: Props) => {
             Smart AI
           </span>
         ) : (
-          <p className="font-bold mt-2 text-text-secondary">Standard</p>
+          <p className="font-bold mt-2 text-text-secondary ">Standard</p>
         )}
         {label === 'PRO' ? (
           <p className="mb-2">
@@ -61,9 +61,9 @@ const PaymentCard = ({ current, label, landing }: Props) => {
         {PLANS[label === 'PRO' ? 1 : 0].features.map((i) => (
           <p
             key={i}
-            className="mt-2 text-muted-foreground flex gap-2 "
+            className="mt-2 text-muted-foreground flex gap-2  "
           >
-            <CircleCheck className="text-indigo-500" />
+            <CircleCheck className="text-indigo-500 flex-none" />
             {i}
           </p>
         ))}

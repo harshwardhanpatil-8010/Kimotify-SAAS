@@ -5,6 +5,7 @@ import {ClerkProvider} from '@clerk/nextjs'
 const jakarta = Plus_Jakarta_Sans({ subsets: ["latin"] });
 import { ThemeProvider } from "@/providers/theme-provider"
 import { Toaster } from "sonner";
+import ReactQueryProvider from "@/providers/react-query-provider";
 export const metadata: Metadata = {
   title: "KIMOTIFY",
   description: "Automate DMs and Comments on Social media platforms",
@@ -26,7 +27,11 @@ export default function RootLayout({
             defaultTheme="dark"
             enableSystem
             disableTransitionOnChange
-          >{children}
+          >
+            <ReactQueryProvider>
+            {children}
+            </ReactQueryProvider>
+            
           <Toaster/>
           </ThemeProvider>
           </body>
