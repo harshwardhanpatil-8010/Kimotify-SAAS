@@ -1,13 +1,26 @@
-import React from 'react'
+'use client'
+
+import React, { useMemo } from 'react'
 import { Button } from '@/components/ui/button'
 import Loader from '../loader'
 import { TbAutomation } from "react-icons/tb";
+import { useCreateAutomation } from '@/hooks/use-automations';
+import { v4 } from 'uuid';
+import { log } from 'console';
 type Props = {}
 
 const CreateAutomation = (props: Props) => {
-  return (<Button className='lg:px-10 py-6 bg-gradient-to-br hover:opacity-80 text-white rounded-lg from-[#1c3dbf] font-medium to-[#941489] cursor-pointer text-lg'>
-    <Loader state={false}>
-    <TbAutomation />
+  const mutationId = useMemo(() => v4(), [])
+
+  console.log(mutationId);
+  const { isPending, mutate} = useCreateAutomation(mutationId)
+  
+  
+
+  return (<Button className='lg:px-10 py-6 bg-gradient-to-br hover:opacity-80 text-white rounded-lg font-medium from-[#2544D8] via-[#6A36C4] to-[#A6209B] cursor-pointer text-lg leading-none shadow-md' 
+  onClick={() => mutate({name: 'Untitled', id: mutationId,  createdAt: new Date(), keywords: [],})}>
+    <Loader state={isPending}>
+    <TbAutomation size={20}/>
         <p className='lg:inline hidden'>Create an Automation</p>
     </Loader>
   </Button>)

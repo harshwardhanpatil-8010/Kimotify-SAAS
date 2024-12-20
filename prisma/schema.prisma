@@ -124,6 +124,6 @@ enum MEDIATYPE {
 }
 
 enum LISTENERS {
-  SMARTAI
+  SAMRTAI
   MESSAGE
 }

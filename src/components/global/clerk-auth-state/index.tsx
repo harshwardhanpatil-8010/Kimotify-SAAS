@@ -20,7 +20,7 @@ const ClerkAuthState = (props: Props) => {
   </ClerkLoading>
   <SignedOut>
     <SignInButton>
-        <Button className='rounded-xl bg-[#252525] text-white hover:bg-[#252525]/70 '>
+        <Button className='rounded-xl bg-[#454444] text-white hover:bg-[#252525]/70 '>
             <User/>
             Login
         </Button>

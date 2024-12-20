@@ -58,7 +58,7 @@ const Navbar = ({ slug }: Props) => {
                 <Items page={page} slug={slug} />
               </div>
               <div className="flex justify-center overflow-visible">
-                <Separator className="bg-[#b951c0] h-[2px] w-[75%] mx-auto rounded-lg" />
+                <Separator  className="bg-gradient-to-r from-transparent via-[#b951c0] to-transparent h-[1px] w-[85%] mx-auto rounded-full opacity-60" />
               </div>
               <div className="px-3 flex flex-col gap-y-5 text-lg leading-none">
                 <div className="flex gap-x-2 leading-none cursor-pointer">
