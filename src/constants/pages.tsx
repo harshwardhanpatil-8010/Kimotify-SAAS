@@ -29,9 +29,9 @@ export const PLANS = [
       description: 'Perfect for getting started',
       price: '$0',
       features: [
-        'Boost engagement with target responses',
-        'Automate comment replies to enhance audience interaction',
-        'Turn followers into customers with targeted messaging',
+        'Drive engagement with personalized responses',
+        'Use automated replies to foster better audience engagement',
+        'Convert followers into loyal customers through strategic messaging',
       ],
       cta: 'Get Started',
     },

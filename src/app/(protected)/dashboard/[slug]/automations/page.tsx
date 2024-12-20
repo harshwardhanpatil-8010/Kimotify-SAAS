@@ -1,3 +1,5 @@
+/// needs updates and changes according to  global automation-list/index.tsx
+
 import AutomationList from '@/components/global/automation-list'
 import CreateAutomation from '@/components/global/create-automation'
 import { Check } from 'lucide-react'

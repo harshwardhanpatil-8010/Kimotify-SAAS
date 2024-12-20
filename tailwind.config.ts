@@ -3,9 +3,9 @@ import type { Config } from 'tailwindcss'
 const config = {
   darkMode: ['class'],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
+    './pages/**/*.{js,ts,jsx,tsx}',
+    './components/**/*.{js,ts,jsx,tsx}',
+    './app/**/*.{js,ts,jsx,tsx}',
     './src/**/*.{js,ts,jsx,tsx}',
   ],
   prefix: '',
@@ -17,6 +17,9 @@ const config = {
         '2xl': '1400px',
       },
     },
+    safelist: [
+      'bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]',
+    ],
     extend: {
       colors: {
         'in-active': '#545454',
@@ -133,6 +136,8 @@ const config = {
       'desktop': '1280px',
       // => @media (min-width: 1280px) { ... }
     },
+    
+    
   },
   plugins: [require('tailwindcss-animate')],
 } satisfies Config
