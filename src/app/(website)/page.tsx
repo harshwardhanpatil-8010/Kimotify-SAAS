@@ -8,7 +8,7 @@ import youtubelogo from '@/app/assets/youtube.png'
 import twitterlogo from '@/app/assets/twitter.png'
 import telegramlogo from '@/app/assets/telegram.png'
 import salesforcelogo from '@/app/assets/salesforce.png'
-import logo from '@/app/assets/logo.png'
+//import logo from '@/app/assets/logo.png'
 import {
   Card,
   CardContent,
@@ -58,12 +58,12 @@ export default function Home() {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <div className="flex items-center gap-2 text-3xl font-bold tracking-tighter text-[#E93B84] uppercase select-none">
-                <Image 
+                {/* <Image 
                   src={logo} 
                   alt="Kimotify Logo" 
                   className="w-16 h-16 object-contain"
                   priority
-                />
+                /> */}
                 <span>KIMOTIFY</span>
               </div>
             </div>
@@ -122,11 +122,11 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 rounded-full  max-w-5xl mx-auto">
               {plans.map((plan, index) => (
                 <Card
                   key={index}
-                  className="flex flex-col justify-between border-slate-800 bg-slate-950/50 backdrop-blur-sm hover:border-slate-700 transition-colors"
+                  className="flex flex-col justify-between border-slate-800 bg-slate-950/50 backdrop-blur-sm hover:border-slate-700 transition-colors w-full"
                 >
                   <CardHeader>
                     <CardTitle className="text-2xl text-white">{plan.name}</CardTitle>
@@ -147,12 +147,20 @@ export default function Home() {
                     </ul>
                   </CardContent>
                   <CardFooter className="mt-6">
-                    <Button className="w-full bg-gradient-to-br from-[#1c3dbf] to-[#941489] hover:opacity-90 transition-opacity">
+                    <Button className="w-full bg-gradient-to-br from-[#1c3dbf] to-[#941489] hover:opacity-90 transition-opacity rounded-full">
                       {plan.cta}
                     </Button>
                   </CardFooter>
-                </Card>
+                </Card> 
               ))}
+            </div>
+            <div className='flex-col border-0 h-56 w-full mt-16 border-slate-800 bg-slate-950/50 left-0 right-0 absolute justify-normal'>
+              <div className='flex justify-center items-center h-full '>
+                <div className='text-center'>
+                  <h2>Contact us</h2>
+               </div>
+              </div>
+                 
             </div>
           </div>
         </div>
