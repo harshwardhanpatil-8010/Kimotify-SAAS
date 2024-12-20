@@ -1,7 +1,8 @@
 'use server'
 
+
 import { onCurrentUser } from "../user"
-import { createAutomation, findAutomation, getAutomations, updateAutomation } from "./queries"
+import { addKeyWord, addListener, addTrigger, createAutomation, deleteKeywordQuery, findAutomation, getAutomations, updateAutomation } from "./queries"
 
 export const createAutomations = async (id?: string) => {
     const user = await onCurrentUser()
@@ -59,3 +60,52 @@ export const updateAutomationName = async (
     }
    
 }
+
+export const saveListener = async (
+    automationId: string,
+    listener: 'SMARTAI' | 'MESSAGE',
+    prompt: string,
+    reply?: string
+) => {
+    await onCurrentUser()
+    try {
+        const create = await addListener(automationId, listener, prompt, reply)
+        if (create) return { status: 200, data: 'Listener added successfully' }
+        return {status: 404, data: 'cant add listener'}
+    } catch (error) {
+        return {status:500, data: 'Oops! something went wrong'}
+    }
+}
+
+export const saveTrigger = async (automationId: string, trigger: string[]) => {
+    await onCurrentUser()
+    try {
+        const create = await addTrigger(automationId, trigger)
+        if (create) return { status: 200, data: 'Trigger added successfully' }
+        return {status: 404, data: 'cant add trigger'}
+    } catch (error) {
+        return { status: 500, data: 'Oops! Something went wrong' }
+    }
+}
+
+export const saveKeyword = async (automationId: string, keyword: string) => {
+    await onCurrentUser()
+    try {
+        const create = await addKeyWord(automationId, keyword)
+        if (create) return { status: 200, data: 'Keyword added successfully' }
+        return {status: 404, data: 'cant add keyword'}
+    } catch (error) {
+        return { status: 500, data: 'Oops! Something went wrong' }
+    }
+}
+export const deleteKeyword = async (id: string) => {
+    await onCurrentUser()
+    try {
+        const deleted = await deleteKeywordQuery(id)
+        if (deleted) return { status: 200, data: 'Keyword deleted' }
+        return {status: 404, data: 'keyword not found'}
+    } catch (error) {
+        return { status: 500, data: 'Oops! Something went wrong' }
+    }
+}
+

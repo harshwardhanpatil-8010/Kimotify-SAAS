@@ -14,8 +14,8 @@ import CreateAutomation from '../create-automation'
 import Search from '../search'
 import { Notifications } from './notifications'
 import MainBreadCrumb from '../bread-crumbs/main-bread-crumb'
-import logo from '@/app/assets/logo.png'
-import Image from 'next/image';
+//import logo from '@/app/assets/logo.png'
+//import Image from 'next/image';
 
 type Props = {
   slug: string
@@ -43,15 +43,15 @@ const Navbar = ({ slug }: Props) => {
           >
             <div className="flex flex-col gap-y-5 w-full h-full p-3 bg-[#0e0e0e] bg-opacity-90 bg-clip-padding backdrop-filter backdrop--blur__safari backdrop-blur-3xl">
             <div className="flex items-center gap-0 text-3xl font-bold tracking-tighter text-[#E93B84] uppercase select-none leading-none justify-center">
-          <div className="w-20 h-20 relative">
-            <Image
+          {/* <div className="w-20 h-20 relative">
+             <Image
               src={logo} 
               alt="Kimotify Logo" 
               layout="fill" 
               objectFit="contain"
               priority 
-            />
-          </div>
+            /> 
+          </div> */}
           <span>KIMOTIFY</span>
         </div>
               <div className="flex flex-col py-3">
