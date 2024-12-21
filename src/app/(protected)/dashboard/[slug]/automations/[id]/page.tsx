@@ -1,8 +1,9 @@
 import { getAutomationInfo } from '@/actions/automations'
-
+import PostNode from '@/components/global/automations/post/node'
+import ThenNode from '@/components/global/automations/then/node'
 import Trigger from '@/components/global/automations/trigger'
 import AutomationsBreadCrumb from '@/components/global/bread-crumbs/automations'
-import { IoIosWarning } from "react-icons/io";
+import { IoWarning } from "react-icons/io5";
 import { PrefetchUserAutomation } from '@/react-query/prefetch'
 
 import {
@@ -12,7 +13,6 @@ import {
 } from '@tanstack/react-query'
 
 import React from 'react'
-import ThenNode from '@/components/global/automations/then/node';
 
 type Props = {
   params: { id: string }
@@ -35,12 +35,13 @@ const Page = async ({ params }: Props) => {
         <AutomationsBreadCrumb id={params.id} />
         <div className="w-full lg:w-10/12 xl:w-6/12 p-5 rounded-xl flex flex-col bg-[#1D1D1D] gap-y-3">
           <div className="flex gap-x-2">
-            <IoIosWarning />
+          <IoWarning />
             When...
           </div>
           <Trigger id={params.id} />
         </div>
-        <ThenNode id={params.id}/>
+        <ThenNode id={params.id} />
+        <PostNode id={params.id} />
       </div>
     </HydrationBoundary>
   )

@@ -28,7 +28,7 @@ const PaymentCard = ({ current, label, landing }: Props) => {
       >
         {landing ? (
           <h2 className="text-2xl">
-            {label === 'PRO' && 'PREMIUM Plan'}
+            {label === 'PRO' && 'SMARTAI Plan'}
             {label === 'FREE' && 'Standard'}
           </h2>
         ) : (
@@ -45,7 +45,7 @@ const PaymentCard = ({ current, label, landing }: Props) => {
         </p>
         {label === 'PRO' ? (
           <span className="bg-gradient-to-r text-3xl from-[#1d307b] to-[#9a218f] font-bold  bg-clip-text text-transparent">
-                PREMIUM
+                SMARTAI
           </span>
         ) : (
           <p className="font-bold mt-2 text-text-secondary ">Standard</p>

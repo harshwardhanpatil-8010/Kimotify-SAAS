@@ -6,7 +6,6 @@ import Loader from '../loader'
 import { TbAutomation } from "react-icons/tb";
 import { useCreateAutomation } from '@/hooks/use-automations';
 import { v4 } from 'uuid';
-import { log } from 'console';
 type Props = {}
 
 const CreateAutomation = (props: Props) => {
