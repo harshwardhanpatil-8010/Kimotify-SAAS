@@ -29,7 +29,7 @@ const AutomationList = (props: Props) => {
   if (data?.status !== 200 || data.data.length <= 0) {
     return (
       <div className="h-[70vh] flex justify-center items-center flex-col gap-y-3">
-        <h3 className="text-lg text-gray-400">No Automations </h3>
+        <h3 className="text-lg text-gray-400">No Automations</h3>
         <CreateAutomation />
       </div>
     )

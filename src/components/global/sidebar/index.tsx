@@ -1,3 +1,4 @@
+
 'use client'
 import React from 'react'
 import Head from 'next/head'
@@ -8,6 +9,7 @@ import ClerkAuthState from '../clerk-auth-state'
 import { IoMdHelpCircle } from "react-icons/io"
 import { SubscriptionPlan } from '../subscription-plan'
 import UpgradeCard from './upgrade'
+import Link from 'next/link'
 
 type Props = {
   slug: string
@@ -53,7 +55,10 @@ const Sidebar = ({ slug }: Props) => {
             </div>
             <div className="leading-none flex items-center gap-x-3 text-[#a29f9f] cursor-pointer hover:text-[#ff4d94] transition-all duration-300 transform hover:translate-x-2">
               <IoMdHelpCircle className="text-xl animate-bounce" />
-              <p>Help</p>
+              
+              <Link href="/Help" >
+                  Help
+                </Link>
             </div>
           </div>
 
