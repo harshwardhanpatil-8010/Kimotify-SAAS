@@ -52,7 +52,7 @@ const AutomationList = (props: Props) => {
             {automation.keywords.length > 0 ? (
               <div className="flex gap-x-2 flex-wrap mt-3">
                 {
-                  //@ts-ignore
+                  
                   automation.keywords.map((keyword, key) => (
                     <div
                       key={keyword.id}

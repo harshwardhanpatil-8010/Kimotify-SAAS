@@ -1,7 +1,6 @@
 'use server'
 
 import { client } from '@/lib/prisma'
-import { v4 } from 'uuid'
 
 export const createAutomation = async (clerkId: string, id?: string) => {
   return await client.user.update({
