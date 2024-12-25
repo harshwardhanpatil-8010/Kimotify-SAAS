@@ -59,9 +59,7 @@ export async function POST(req: NextRequest) {
               const tracked = await trackResponses(automation.id, 'DM')
               if (tracked) {
                 return NextResponse.json(
-                  {
-                    message: 'Message sent',
-                  },
+                  { message: 'Message sent' },
                   { status: 200 }
                 )
               }
@@ -74,7 +72,7 @@ export async function POST(req: NextRequest) {
             automation.User?.subscription?.plan === 'PRO'
           ) {
             const smart_ai_message = await openai.chat.completions.create({
-              model: 'gpt-4o',
+              model: 'gpt-4',
               messages: [
                 {
                   role: 'assistant',
@@ -111,9 +109,7 @@ export async function POST(req: NextRequest) {
                 const tracked = await trackResponses(automation.id, 'DM')
                 if (tracked) {
                   return NextResponse.json(
-                    {
-                      message: 'Message sent',
-                    },
+                    { message: 'Message sent' },
                     { status: 200 }
                   )
                 }
@@ -132,24 +128,26 @@ export async function POST(req: NextRequest) {
           false
         )
 
-        console.log('geting the automations')
+        console.log('Getting the automations')
 
         const automations_post = await getKeywordPost(
           webhook_payload.entry[0].changes[0].value.media.id,
           automation?.id!
         )
 
-        console.log('found keyword ', automations_post)
+        console.log('Found keyword ', automations_post)
 
         if (automation && automations_post && automation.trigger) {
-          console.log('first if')
+          console.log('First if')
+
           if (automation.listener) {
-            console.log('first if')
+            console.log('Listener check')
+
             if (automation.listener.listener === 'MESSAGE') {
               console.log(
-                'SENDING DM, WEB HOOK PAYLOAD',
+                'Sending DM, Webhook Payload',
                 webhook_payload,
-                'changes',
+                'Changes',
                 webhook_payload.entry[0].changes[0].value.from
               )
 
@@ -171,24 +169,23 @@ export async function POST(req: NextRequest) {
 
                 if (tracked) {
                   return NextResponse.json(
-                    {
-                      message: 'Message sent',
-                    },
+                    { message: 'Message sent' },
                     { status: 200 }
                   )
                 }
               }
             }
+
             if (
               automation.listener.listener === 'SMARTAI' &&
               automation.User?.subscription?.plan === 'PRO'
             ) {
               const smart_ai_message = await openai.chat.completions.create({
-                model: 'gpt-4o',
+                model: 'gpt-4',
                 messages: [
                   {
                     role: 'assistant',
-                    content: `${automation.listener?.prompt}: keep responses under 2 sentences`,
+                    content: `${automation.listener?.prompt}: Keep responses under 2 sentences`,
                   },
                 ],
               })
@@ -221,9 +218,7 @@ export async function POST(req: NextRequest) {
 
                   if (tracked) {
                     return NextResponse.json(
-                      {
-                        message: 'Message sent',
-                      },
+                      { message: 'Message sent' },
                       { status: 200 }
                     )
                   }
@@ -249,11 +244,11 @@ export async function POST(req: NextRequest) {
           automation.listener?.listener === 'SMARTAI'
         ) {
           const smart_ai_message = await openai.chat.completions.create({
-            model: 'gpt-4o',
+            model: 'gpt-4',
             messages: [
               {
                 role: 'assistant',
-                content: `${automation.listener?.prompt}: keep responses under 2 sentences`,
+                content: `${automation.listener?.prompt}: Keep responses under 2 sentences`,
               },
               ...customer_history.history,
               {
@@ -286,12 +281,8 @@ export async function POST(req: NextRequest) {
             )
 
             if (direct_message.status === 200) {
-              //if successfully send we return
-
               return NextResponse.json(
-                {
-                  message: 'Message sent',
-                },
+                { message: 'Message sent' },
                 { status: 200 }
               )
             }
@@ -300,23 +291,19 @@ export async function POST(req: NextRequest) {
       }
 
       return NextResponse.json(
-        {
-          message: 'No automation set',
-        },
+        { message: 'No automation set' },
         { status: 200 }
       )
     }
+
     return NextResponse.json(
-      {
-        message: 'No automation set',
-      },
+      { message: 'No automation set' },
       { status: 200 }
     )
   } catch (error) {
+    console.error('Error during webhook processing:', error)
     return NextResponse.json(
-      {
-        message: 'No automation set',
-      },
+      { message: 'Error processing request' },
       { status: 200 }
     )
   }
