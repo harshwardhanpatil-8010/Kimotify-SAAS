@@ -11,6 +11,16 @@ module.exports = {
   experimental: {
     disableOptimizedRouteLoading: true, 
     appDir: true,
+    serverActions: true,
+  },
+  async redirects() {
+    return [
+      {
+        source: '/api/webhook/instagram',
+        destination: '/', // Redirect it if you need to avoid it being processed
+        permanent: false,
+      },
+    ];
   },
   
 };
