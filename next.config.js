@@ -10,6 +10,7 @@ module.exports = {
   },
   experimental: {
     disableOptimizedRouteLoading: true, 
+    appDir: true,
   },
   
 };

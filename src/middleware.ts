@@ -1,17 +1,18 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
+import { NextResponse } from 'next/server';
 
 const isProtectedRoute = createRouteMatcher([
     '/dashboard(.*)',
     '/api/payment(.*)',
     '/callback(.*)',
-])
-export default clerkMiddleware(async (auth, req)=> {
-    if(isProtectedRoute(req))
-        await auth.protect()
-    
-})
+    '/api/webhook/instagram', // Add your API route here if protected
+]);
 
-
+export default clerkMiddleware(async (auth, req) => {
+    if (isProtectedRoute(req)) {
+        await auth.protect();
+    }
+});
 
 export const config = {
   matcher: [
