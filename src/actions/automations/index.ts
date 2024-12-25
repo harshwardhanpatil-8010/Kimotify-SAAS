@@ -5,8 +5,8 @@ import { findUser } from '../user/queries'
 import {
   addKeyWord,
   addListener,
-  addTrigger,
   addPost,
+  addTrigger,
   createAutomation,
   deleteKeywordQuery,
   findAutomation,
@@ -70,14 +70,14 @@ export const updateAutomationName = async (
 }
 
 export const saveListener = async (
-  autmationId: string,
+  automationId: string,
   listener: 'SMARTAI' | 'MESSAGE',
   prompt: string,
   reply?: string
 ) => {
   await onCurrentUser()
   try {
-    const create = await addListener(autmationId, listener, prompt, reply)
+    const create = await addListener(automationId, listener, prompt, reply)
     if (create) return { status: 200, data: 'Listener created' }
     return { status: 404, data: 'Cant save listener' }
   } catch (error) {
@@ -142,36 +142,37 @@ export const getProfilePosts = async () => {
 }
 
 export const savePosts = async (
-    autmationId: string,
-    posts: {
-      postid: string
-      caption?: string
-      media: string
-      mediaType: 'IMAGE' | 'VIDEO' | 'CAROSEL_ALBUM'
-    }[]
-  ) => {
-    await onCurrentUser()
-    try {
-      const create = await addPost(autmationId, posts)
-  
-      if (create) return { status: 200, data: 'Posts attached' }
-  
-      return { status: 404, data: 'Automation not found' }
-    } catch (error) {
-      return { status: 500, data: 'Oops! something went wrong' }
-    }
+  automationId: string,
+  posts: {
+    postid: string
+    caption?: string
+    media: string
+    mediaType: 'IMAGE' | 'VIDEO' | 'CAROSEL_ALBUM'
+  }[]
+) => {
+  await onCurrentUser()
+  try {
+    const create = await addPost(automationId, posts)
+
+    if (create) return { status: 200, data: 'Posts attached' }
+
+    return { status: 404, data: 'Automation not found' }
+  } catch (error) {
+    return { status: 500, data: 'Oops! something went wrong' }
   }
-  export const activateAutomation = async (id: string, state: boolean) => {
-    await onCurrentUser()
-    try {
-      const update = await updateAutomation(id, { active: state })
-      if (update)
-        return {
-          status: 200,
-          data: `Automation ${state ? 'activated' : 'disabled'}`,
-        }
-      return { status: 404, data: 'Automation not found' }
-    } catch (error) {
-      return { status: 500, data: 'Oops! something went wrong' }
-    }
+}
+
+export const activateAutomation = async (id: string, state: boolean) => {
+  await onCurrentUser()
+  try {
+    const update = await updateAutomation(id, { active: state })
+    if (update)
+      return {
+        status: 200,
+        data: `Automation ${state ? 'activated' : 'disabled'}`,
+      }
+    return { status: 404, data: 'Automation not found' }
+  } catch (error) {
+    return { status: 500, data: 'Oops! something went wrong' }
   }
+}

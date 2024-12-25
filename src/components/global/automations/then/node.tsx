@@ -1,10 +1,10 @@
 'use client'
 import { Separator } from '@/components/ui/separator'
 import { useQueryAutomation } from '@/hooks/user-queries'
-import { IoWarning } from "react-icons/io5";
+import { RiSendPlane2Fill } from "react-icons/ri";
 import React from 'react'
 import PostButton from '../post'
-import { RiSendPlane2Fill } from "react-icons/ri";
+import { IoWarning } from 'react-icons/io5'
 import { LuBrainCircuit } from "react-icons/lu";
 type Props = {
   id: string
@@ -26,16 +26,16 @@ const ThenNode = ({ id }: Props) => {
         />
         <span className="h-[9px] w-[9px] bg-connector/10 rounded-full" />
       </div>
-      <div className=" flex gap-x-2">
-      <IoWarning color='Blue'/>
+      <div className="flex gap-x-2">
+        <IoWarning/>
         Then...
       </div>
       <div className="bg-background-80 p-3 rounded-xl flex flex-col gap-y-2">
         <div className="flex gap-x-2 items-center">
           {data.data.listener.listener === 'MESSAGE' ? (
-          <RiSendPlane2Fill />
+            <RiSendPlane2Fill color='Blue' />
           ) : (
-            <LuBrainCircuit />
+            <LuBrainCircuit color='Blue'/>
           )}
           <p className=" text-lg">
             {data.data.listener.listener === 'MESSAGE'

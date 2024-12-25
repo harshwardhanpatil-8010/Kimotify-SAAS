@@ -4,7 +4,8 @@ import React from 'react'
 import { useQueryAutomation } from '@/hooks/user-queries'
 import { useMutationData } from '@/hooks/use-mutation-data'
 import { activateAutomation } from '@/actions/automations'
-import { VscFolderActive } from "react-icons/vsc";
+import { TbAutomation } from 'react-icons/tb'
+
 
 type Props = {
   id: string
@@ -24,7 +25,7 @@ const ActivateAutomationButton = ({ id }: Props) => {
       onClick={() => mutate({ state: !data?.data?.active })}
       className="lg:px-10 bg-gradient-to-br hover:opacity-80 text-white rounded-full from-[#3352CC] font-medium to-[#1C2D70] ml-4"
     >
-      {isPending ? <Loader2 className="animate-spin" /> : <VscFolderActive />}
+      {isPending ? <Loader2 className="animate-spin" /> : <TbAutomation />}
 
       <p className="lg:inline hidden">
         {data?.data?.active ? 'Disable' : 'Activate'}

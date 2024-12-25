@@ -1,15 +1,18 @@
 'use client'
+
 import AutomationReducer from '@/redux/slices/automation'
-import {combineReducers, configureStore} from '@reduxjs/toolkit'
 import { TypedUseSelectorHook, useSelector } from 'react-redux'
+import { combineReducers, configureStore } from '@reduxjs/toolkit'
+
 const rootReducer = combineReducers({
-    AutomationReducer,
+  AutomationReducer,
 })
 
 export const store = configureStore({
-    reducer: rootReducer,
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware({
-        serializableCheck: false,
+  reducer: rootReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
     }),
 })
 

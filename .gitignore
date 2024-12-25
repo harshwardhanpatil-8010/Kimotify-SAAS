@@ -27,6 +27,7 @@ yarn-error.log*
 
 # local env files
 .env*.local
+.env 
 
 # vercel
 .vercel
@@ -62,6 +63,3 @@ Temporary Items
 .apdisk
 
 # End of https://mrkandreev.name/snippets/gitignore-generator/#macOS\\
-.env
-
-.env

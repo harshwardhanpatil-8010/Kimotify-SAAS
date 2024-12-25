@@ -2,7 +2,6 @@
 import React from 'react'
 import InstagramGradientIcon from '../../icons-logo/instagram-logo'
 import { RiSendPlane2Fill } from "react-icons/ri";
-
 type Props = {
   type: string
   keywords: {
@@ -16,7 +15,7 @@ const ActiveTrigger = ({ keywords, type }: Props) => {
   return (
     <div className="bg-background-80 p-3 rounded-xl w-full">
       <div className="flex gap-x-2 items-center">
-        {type === 'COMMENT' ? <InstagramGradientIcon /> : <RiSendPlane2Fill />}
+        {type === 'COMMENT' ? <InstagramGradientIcon/> : <RiSendPlane2Fill color='Blue' />}
         <p className="text-lg">
           {type === 'COMMENT'
             ? 'User comments on my post.'

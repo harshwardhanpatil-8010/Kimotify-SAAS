@@ -57,7 +57,8 @@ export const useEditAutomation = (automationId: string) => {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside)
     }
-  }, [])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[])
 
   return {
     edit,

@@ -1,6 +1,7 @@
 'use server'
 
 import { client } from '@/lib/prisma'
+import { v4 } from 'uuid'
 
 export const createAutomation = async (clerkId: string, id?: string) => {
   return await client.user.update({
@@ -87,11 +88,11 @@ export const addListener = async (
         create: {
           listener,
           prompt,
-          commentReply: reply,
+          commentReply: reply, 
         },
       },
     },
-  })
+  })  
 }
 
 export const addTrigger = async (automationId: string, trigger: string[]) => {
@@ -143,7 +144,7 @@ export const deleteKeywordQuery = async (id: string) => {
 }
 
 export const addPost = async (
-  autmationId: string,
+  automationId: string,
   posts: {
     postid: string
     caption?: string
@@ -153,7 +154,7 @@ export const addPost = async (
 ) => {
   return await client.automation.update({
     where: {
-      id: autmationId,
+      id: automationId,
     },
     data: {
       posts: {

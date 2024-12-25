@@ -1,4 +1,3 @@
-
 import { useAutomationPosts } from '@/hooks/use-automations'
 import { useQueryAutomationPosts } from '@/hooks/user-queries'
 import React from 'react'

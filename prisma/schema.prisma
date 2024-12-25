@@ -25,7 +25,6 @@ model User {
   automations  Automation[]
 }
 
-
 model Subscription {
   id         String            @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   User       User?             @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -124,6 +123,6 @@ enum MEDIATYPE {
 }
 
 enum LISTENERS {
-  SAMRTAI
+  SMARTAI
   MESSAGE
 }
