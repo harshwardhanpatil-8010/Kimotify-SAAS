@@ -8,16 +8,16 @@ export default function Help() {
     <>
       <Head>
         <title>Help Center - Social Media Automation Platform</title>
-        <meta name="description" content="Get help with social media automation. Access FAQs, guides, tutorials and support resources to master our automation platform." />
+        <meta name="description" content="Get help with social media automation. Access FAQs, guides, tutorials, and support resources to master our automation platform." />
         <meta name="keywords" content="social media automation, help center, FAQs, support, guides, tutorials" />
         <meta property="og:title" content="Help Center - Social Media Automation Platform" />
-        <meta property="og:description" content="Get help with social media automation. Access FAQs, guides, tutorials and support resources." />
+        <meta property="og:description" content="Get help with social media automation. Access FAQs, guides, tutorials, and support resources." />
         <meta property="og:type" content="website" />
       </Head>
 
       <main className="min-h-screen bg-gradient-to-br from-[#0d0d4d] via-[#03001c] to-[#260058] flex flex-col items-center justify-center px-6 py-16">
         <div className="max-w-7xl mx-auto text-center">
-          <h1 className="text-5xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-300 via-purple-300 to-blue-300 mb-8 animate-gradient">
+          <h1 className="text-5xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-300 via-purple-300 to-blue-300 mb-8">
             Need Help with Social Media Automation?
           </h1>
           <p className="text-xl md:text-2xl text-gray-300 mb-16 leading-relaxed max-w-4xl mx-auto font-light">
@@ -26,7 +26,7 @@ export default function Help() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
             <Link
-              href="/faq"
+              href="/Help/faq"
               className="group p-8 bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl hover:bg-white/20 hover:transform hover:scale-105 transition-all duration-300 border border-white/20 flex flex-col items-center"
               aria-label="View Frequently Asked Questions"
             >
@@ -42,25 +42,9 @@ export default function Help() {
             </Link>
 
             <Link
-              href="/contact"
+              href="/Help/guides"
               className="group p-8 bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl hover:bg-white/20 hover:transform hover:scale-105 transition-all duration-300 border border-white/20 flex flex-col items-center"
-              aria-label="Contact Support Team"
-            >
-              <div className="w-16 h-16 mb-6 bg-gradient-to-br from-purple-400 to-blue-500 rounded-full flex items-center justify-center">
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-              </div>
-              <h2 className="text-2xl font-bold text-white mb-3">Contact Support</h2>
-              <p className="text-gray-300 group-hover:text-white transition-colors">
-                Get in touch with our team for personalized help.
-              </p>
-            </Link>
-
-            <Link
-              href="/guides"
-              className="group p-8 bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl hover:bg-white/20 hover:transform hover:scale-105 transition-all duration-300 border border-white/20 flex flex-col items-center"
-              aria-label="View Platform Guides"
+              aria-label="View Guides"
             >
               <div className="w-16 h-16 mb-6 bg-gradient-to-br from-blue-400 to-green-500 rounded-full flex items-center justify-center">
                 <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -74,9 +58,25 @@ export default function Help() {
             </Link>
 
             <Link
-              href="/resources"
+              href="/Help/contact-support"
               className="group p-8 bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl hover:bg-white/20 hover:transform hover:scale-105 transition-all duration-300 border border-white/20 flex flex-col items-center"
-              aria-label="Access Additional Resources"
+              aria-label="Contact Support"
+            >
+              <div className="w-16 h-16 mb-6 bg-gradient-to-br from-purple-400 to-blue-500 rounded-full flex items-center justify-center">
+                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <h2 className="text-2xl font-bold text-white mb-3">Contact Support</h2>
+              <p className="text-gray-300 group-hover:text-white transition-colors">
+                Get in touch with our team for personalized help.
+              </p>
+            </Link>
+ 
+            <Link
+              href="/Help/Resources"
+              className="group p-8 bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl hover:bg-white/20 hover:transform hover:scale-105 transition-all duration-300 border border-white/20 flex flex-col items-center"
+              aria-label="Access Resources"
             >
               <div className="w-16 h-16 mb-6 bg-gradient-to-br from-green-400 to-yellow-500 rounded-full flex items-center justify-center">
                 <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -85,7 +85,7 @@ export default function Help() {
               </div>
               <h2 className="text-2xl font-bold text-white mb-3">Resources</h2>
               <p className="text-gray-300 group-hover:text-white transition-colors">
-                Helpful tools and resources to enhance productivity.
+                Tools and materials to boost productivity.
               </p>
             </Link>
           </div>

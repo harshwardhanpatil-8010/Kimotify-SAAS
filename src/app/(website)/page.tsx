@@ -96,13 +96,10 @@ export default function Home() {
                 <Link href="/dashboard"  className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white hover:opacity-90 transition-all duration-300 transform hover:scale-105 px-10 py-3 text-lg rounded-xl shadow-lg ">
                 Get Started Free
                 </Link>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-2 border-blue-400 hover:bg-blue-900/50 transition-all duration-300 transform hover:scale-105 px-10 py-6 text-lg rounded-xl backdrop-blur-sm"
-                >
-                  Watch Demo
-                </Button>
+
+                <Link href="/Help"  className="border-2 border-blue-400 hover:bg-blue-900/50 transition-all duration-300 transform hover:scale-105 px-10 py-3 text-lg rounded-xl backdrop-blur-sm ">
+                Know more
+                </Link>
               </div>
             </div>
 
@@ -184,13 +181,10 @@ export default function Home() {
                  >
                   Contact Sales
                 </Button>
-              <Button
-              size="lg"
-             variant="outline"
-              className="border-2 border-blue-400 hover:bg-blue-900/50 transition-all duration-300 transform hover:scale-105 px-8 py-4 text-lg rounded-xl text-blue-400 backdrop-blur-sm"
-             >
-              Start Free
-            </Button>
+             
+            <Link href="/sign-up" className="border-2 border-blue-400 hover:bg-blue-900/50 transition-all duration-300 transform hover:scale-105 px-8 py-1 text-lg rounded-xl text-blue-400 backdrop-blur-sm">
+            Start Free
+                </Link>
             </div>
           </div>
           </div>
