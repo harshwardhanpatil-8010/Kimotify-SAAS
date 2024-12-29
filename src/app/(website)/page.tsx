@@ -1,3 +1,4 @@
+
 import { Button } from '@/components/ui/button'
 import instagramlogo from '@/app/assets/instagram.png'
 import facebooklogo from '@/app/assets/facebook.png'
@@ -17,7 +18,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { CheckCircle, ArrowRight } from 'lucide-react'
+import { CheckCircle, ArrowRight, Sparkles } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import Footer from '@/components/global/footer'
@@ -92,12 +93,9 @@ export default function Home() {
               </p>
 
               <div className="mt-12 flex justify-center gap-6">
-                <Button
-                  size="lg"
-                  className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white hover:opacity-90 transition-all duration-300 transform hover:scale-105 px-10 py-6 text-lg rounded-xl shadow-lg "
-                >
-                  Get Started Free
-                </Button>
+                <Link href="/dashboard"  className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white hover:opacity-90 transition-all duration-300 transform hover:scale-105 px-10 py-3 text-lg rounded-xl shadow-lg ">
+                Get Started Free
+                </Link>
                 <Button
                   size="lg"
                   variant="outline"
@@ -139,7 +137,12 @@ export default function Home() {
                   >
                     <CardHeader>
                       {plan.popular && (
-                        <div className="text-purple-500 text-sm font-semibold mb-2 animate-pulse">MOST POPULAR</div>
+                    
+                    <div className="flex items-center text-purple-500 text-sm font-semibold mb-2 animate-pulse leading-none">
+                    <Sparkles className="h-5 w-5 leading-none mr-2" />
+                    MOST POPULAR
+                    </div>
+                  
                       )}
                       <CardTitle className="text-3xl text-white mb-2">{plan.name}</CardTitle>
                       <CardDescription className="text-blue-200/70 text-lg">{plan.description}</CardDescription>
