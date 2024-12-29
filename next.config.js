@@ -8,11 +8,6 @@ module.exports = {
     }
     return config;
   },
-  experimental: {
-    disableOptimizedRouteLoading: true, 
-    appDir: true,
-    serverActions: true,
-  },
   async redirects() {
     return [
       {
