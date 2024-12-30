@@ -1,38 +1,45 @@
-import { Button } from '@/components/ui/button'
+import DoubleGradientCard from '@/components/global/double-gradient-card'
+import { getDashboardCards } from '@/constants/dashboard'
+import { VscGraph } from "react-icons/vsc";
 import React from 'react'
-import { FaArrowRight } from "react-icons/fa";
-import Link from 'next/link'
+import Chart from './_components/metrics'
+import MetricsCard from './_components/metrics/metrics-card'
 
-type Props = {
-  label: string
-  subLabel: string
-  description: string
-  link: string
-}
+type Props = {}
 
-const DoubleGradientCard = ({ description, label, subLabel, link }: Props) => {
+const Page = async () => {
+  const dashboardCards = await getDashboardCards();
+
   return (
-    <div className='relative border-[1px] border-in-active/50 p-5 rounded-xl flex flex-col gap-y-20 overflow-hidden'>
-      <div className='flex flex-col z-40'>
-        <h2 className='text-2xl font-medium'>{label}</h2>
-        <p className='text-text-secondary text-sm'>{subLabel}</p>
+    <div className="flex flex-col gap-y-10">
+      <div className="flex gap-5 lg:flex-row flex-col">
+      {dashboardCards.map((card) => (
+          <DoubleGradientCard key={card.id} {...card} />
+        ))}
       </div>
-      <div className='flex justify-between items-center z-40 gap-x-10'>
-        <p className='text-text-secondary text-sm'>{description}</p>
-        
-        {/* Link wrapping the Button */}
-        <Link href={link}>
-          <Button className='rounded-full bg-light-blue w-10 h-10'>
-            <FaArrowRight color='white'/>
-          </Button>
-        </Link>
+      <div className="border-[1px] relative border-in-active/50 p-5 rounded-xl">
+        <span className="flex gap-x-1 z-50 items-center">
+        <VscGraph color='Blue'/>
+          <div className="z-50">
+            <h2 className="text-2xl font-medium text-white">
+              Automated Activity
+            </h2>
+            <p className="text-text-secondary text-sm">
+              Automated 0 out of 1 interactions
+            </p>
+          </div>
+        </span>
+        <div className="w-full flex lg:flex-row flex-col gap-5">
+          <div className="lg:w-6/12">
+            <Chart />
+          </div>
+          <div className="lg:w-6/12">
+            <MetricsCard />
+          </div>
+        </div>
       </div>
-
-      {/* Gradient Backgrounds */}
-      <div className='w-6/12 h-full absolute radial--double--gradient--cards--top top-0 left-0 z-10'/>
-      <div className='w-6/12 h-full absolute radial--double--gradient--cards--bottom top-0 left-1/2 right-0 z-0'/>
     </div>
   )
 }
 
-export default DoubleGradientCard
+export default Page
