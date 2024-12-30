@@ -1,5 +1,5 @@
 import DoubleGradientCard from '@/components/global/double-gradient-card'
-import { DASHBOARD_CARDS } from '@/constants/dashboard'
+import { getDashboardCards } from '@/constants/dashboard'
 import { VscGraph } from "react-icons/vsc";
 import React from 'react'
 import Chart from './_components/metrics'
@@ -7,16 +7,14 @@ import MetricsCard from './_components/metrics/metrics-card'
 
 type Props = {}
 
-const Page = (props: Props) => {
+const Page = async () => {
+  const dashboardCards = await getDashboardCards();
 
   return (
     <div className="flex flex-col gap-y-10">
       <div className="flex gap-5 lg:flex-row flex-col">
-        {DASHBOARD_CARDS.map((card) => (
-          <DoubleGradientCard
-            key={card.id}
-            {...card}
-          />
+      {dashboardCards.map((card) => (
+          <DoubleGradientCard key={card.id} {...card} />
         ))}
       </div>
       <div className="border-[1px] relative border-in-active/50 p-5 rounded-xl">
