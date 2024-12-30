@@ -2,8 +2,10 @@ import DoubleGradientCard from '@/components/global/double-gradient-card'
 import { getDashboardCards } from '@/constants/dashboard'
 import { VscGraph } from "react-icons/vsc";
 import React from 'react'
-import Chart from './_components/metrics'
-import MetricsCard from './_components/metrics/metrics-card'
+
+
+import Chart from '@/app/(protected)/dashboard/[slug]/_components/metrics';
+import MetricsCard from '@/app/(protected)/dashboard/[slug]/_components/metrics/metrics-card';
 
 type Props = {}
 
