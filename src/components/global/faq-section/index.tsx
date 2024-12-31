@@ -12,7 +12,7 @@ const faqData = [
   {
     uniqueKey: 'faq2',
     question: 'Is Instagram DM Marketing legal? Will using this get my account blocked or suspended?', 
-    answer: 'Yes, it is legal if done according to Instagrams guidelines. Avoid spamming users and use authentic communication practices to ensure your accounts safety.',
+    answer: 'Yes, it is legal if done according to Instagram guidelines. Avoid spamming users and use authentic communication practices to ensure your account’s safety.',
   },
   {
     uniqueKey: 'faq3',
@@ -22,11 +22,11 @@ const faqData = [
   {
     uniqueKey: 'faq4', 
     question: 'Can I send a bulk message or broadcast to all of my followers?',
-    answer: 'Yes, you can send bulk messages to your followers while adhering to Instagrams messaging limits to prevent account restrictions.',
+    answer: 'Yes, you can send bulk messages to your followers while adhering to Instagram’s messaging limits to prevent account restrictions.',
   },
   {
     uniqueKey: 'faq5',
-    question: 'Will Instagram DM Marketing make conversations sound like a robot, and not like my brand?',
+    question: 'Will Instagram DM Marketing make conversations sound robotic and not like my brand?',
     answer: 'Our system ensures that messages are personalized and align with your brand voice to maintain authenticity in communication.',
   },
 ];
@@ -41,18 +41,9 @@ export default function FAQSection() {
   return (
     <>
       <Head>
-        <title>Instagram DM Marketing FAQ | Expert Answers to Common Questions</title>
+        <title>Instagram DM Marketing FAQ | Expert Answers</title>
         <meta name="description" content="Get expert answers about Instagram DM Marketing. Learn about automation, bulk messaging, legal compliance, and how to effectively engage with followers." />
         <meta name="keywords" content="Instagram DM Marketing, Instagram automation, social media marketing, Instagram messaging, DM automation, Instagram business, social media automation" />
-        <meta property="og:title" content="Instagram DM Marketing FAQ - Expert Guide & Answers" />
-        <meta property="og:description" content="Comprehensive guide to Instagram DM Marketing. Learn how to automate messages, engage followers, and grow your business on Instagram." />
-        <meta property="og:type" content="website" />
-        <meta property="og:image" content="/images/faq-og-image.jpg" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Instagram DM Marketing FAQ - Expert Guide & Answers" />
-        <meta name="twitter:description" content="Comprehensive guide to Instagram DM Marketing. Learn how to automate messages, engage followers, and grow your business." />
-        <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
-        <link rel="canonical" href="https://yourdomain.com/faq" />
       </Head>
 
       <section className="bg-gradient-to-br from-gray-900 via-black to-blue-900 py-20 min-h-screen">
@@ -62,7 +53,7 @@ export default function FAQSection() {
               Frequently Asked Questions
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Everything you need to know about Instagram DM Marketing and automation
+              Everything you need to know about Instagram DM Marketing and automation.
             </p>
           </div>
 
@@ -96,7 +87,6 @@ export default function FAQSection() {
                         strokeLinecap="round"
                         strokeLinejoin="round"
                         strokeWidth="2"
-                      
                         d="M19 9l-7 7-7-7"
                       />
                     </svg>

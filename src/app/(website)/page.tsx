@@ -115,15 +115,15 @@ export default function Home() {
 
             <div className="flex justify-center items-center flex-wrap gap-12 mt-32 px-4 md:px-0 animate-fade-in">
               {[instagramlogo, salesforcelogo, facebooklogo, linkedinlogo, gmaillogo, whatsapplogo, youtubelogo, twitterlogo, slacklogo, telegramlogo].map((logo, index) => (
-                       <Image 
-                              key={index}
-                              src={logo} 
-                              alt={`Platform Logo ${index}`} 
-                              className="w-20 h-20 object-contain opacity-60 hover:opacity-100 transition-all duration-300 transform hover:scale-110 filter hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]"
-                              loading="lazy"
-                             />
-                               ))}
-              </div>
+                <Image 
+                  key={index}
+                  src={logo} 
+                  alt={`Platform Logo ${index}`} 
+                  className="w-20 h-20 object-contain opacity-60 hover:opacity-100 transition-all duration-300 transform hover:scale-110 filter hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]"
+                  loading="lazy"
+                />
+              ))}
+            </div>
            <div className="mt-36 mb-24">
               <div className="text-center mb-16">
                 <h2 className="text-4xl font-bold tracking-tighter sm:text-6xl text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 mb-6">
