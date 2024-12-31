@@ -1,4 +1,3 @@
-
 import { Button } from '@/components/ui/button'
 import instagramlogo from '@/app/assets/instagram.png'
 import facebooklogo from '@/app/assets/facebook.png'
@@ -152,7 +151,7 @@ export default function Home() {
                       <ul className="space-y-4">
                         {plan.features.map((feature, i) => (
                           <li key={i} className="flex items-center">
-                            <CheckCircle className="mr-3 h-6 w-6 text-purple-500 animate-bounce-slow" />
+                            <CheckCircle className="mr-3 h-6 w-6 text-purple-500 animate-bounce-slow flex-none" />
                             <span className="text-blue-200/90 text-lg">{feature}</span>
                           </li>
                         ))}
@@ -163,7 +162,7 @@ export default function Home() {
                         plan.popular 
                           ? 'bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600'
                           : 'bg-[#45454d]'
-                      } hover:opacity-80 transition-all duration-300 py-6 text-lg rounded-xl text-white shadow-lg`}>
+                      } hover:opacity-80 transition-all duration-300 py-6 text-lg rounded-xl text-white hover:text-black shadow-lg`}>
                         {plan.cta}
                       </Button>
                     </CardFooter>

@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState } from 'react';
@@ -57,74 +56,73 @@ export default function FAQSection() {
       </Head>
 
       <section className="bg-gradient-to-br from-gray-900 via-black to-blue-900 py-20 min-h-screen">
-  <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div className="text-center mb-16">
-      <h1 className="text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 mb-6 tracking-tight leading-tight">
-        Frequently Asked Questions
-      </h1>
-      <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-        Everything you need to know about Instagram DM Marketing and automation
-      </p>
-    </div>
-    
-    <div className="space-y-8">
-      {faqData.map((faq) => (
-        <article 
-          key={faq.uniqueKey}
-          className="bg-white/5 backdrop-blur-xl rounded-2xl shadow-2xl transition-all duration-300 hover:bg-white/10 border border-white/10"
-          itemScope
-          itemType="https://schema.org/Question"
-        >
-          <button
-            className="w-full flex justify-between items-center p-8 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 rounded-2xl"
-            onClick={() => toggleFAQ(faq.uniqueKey)}
-            aria-expanded={activeFAQ === faq.uniqueKey}
-          >
-            <h2 
-              className="text-2xl font-bold text-white text-left"
-              itemProp="name"
-            >
-              {faq.question}
-            </h2>
-            <span className={`ml-4 flex-shrink-0 transform transition-transform duration-300 ${
-              activeFAQ === faq.uniqueKey ? 'rotate-180' : ''
-            }`}>
-              <svg
-                className="w-8 h-8 text-blue-400"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+        <div className="max-w-5xl mx-auto px-6 sm:px-8 lg:px-10">
+          <div className="text-center mb-16">
+            <h1 className="text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 mb-6 tracking-tight leading-tight">
+              Frequently Asked Questions
+            </h1>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              Everything you need to know about Instagram DM Marketing and automation
+            </p>
+          </div>
+
+          <div className="space-y-6">
+            {faqData.map((faq) => (
+              <article 
+                key={faq.uniqueKey}
+                className="bg-white/5 backdrop-blur-xl rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 ease-in-out transform hover:-translate-y-2"
+                itemScope
+                itemType="https://schema.org/Question"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M19 9l-7 7-7-7"
-                />
-              </svg>
-            </span>
-          </button>
-          
-          {activeFAQ === faq.uniqueKey && (
-            <div 
-              className="p-8 pt-0 text-gray-300 text-xl leading-relaxed"
-              itemScope
-              itemProp="acceptedAnswer"
-              itemType="https://schema.org/Answer"
-            >
-              <div 
-                itemProp="text"
-                className="prose prose-lg prose-invert max-w-none"
-              >
-                {faq.answer}
-              </div>
-            </div>
-          )}
-        </article>
-      ))}
-    </div>
-  </div>
-</section>
+                <button
+                  className="w-full flex justify-between items-center p-6 sm:p-8 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 rounded-xl hover:bg-white/10 transition-colors duration-300"
+                  onClick={() => toggleFAQ(faq.uniqueKey)}
+                  aria-expanded={activeFAQ === faq.uniqueKey}
+                >
+                  <h2 
+                    className="text-xl sm:text-2xl font-bold text-white text-left"
+                    itemProp="name"
+                  >
+                    {faq.question}
+                  </h2>
+                  <span className={`ml-4 flex-shrink-0 transform transition-transform duration-300 ${activeFAQ === faq.uniqueKey ? 'rotate-180' : ''}`}>
+                    <svg
+                      className="w-6 h-6 sm:w-8 sm:h-8 text-blue-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                      
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </span>
+                </button>
+
+                {activeFAQ === faq.uniqueKey && (
+                  <div 
+                    className="p-6 sm:p-8 pt-0 text-gray-300 text-lg sm:text-xl leading-relaxed"
+                    itemScope
+                    itemProp="acceptedAnswer"
+                    itemType="https://schema.org/Answer"
+                  >
+                    <div 
+                      itemProp="text"
+                      className="prose prose-lg prose-invert max-w-none"
+                    >
+                      {faq.answer}
+                    </div>
+                  </div>
+                )}
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
     </>
   );
 }
