@@ -2,8 +2,11 @@
 
 import Link from "next/link";
 import Head from "next/head";
+import { useRouter } from "next/navigation";
 
 export default function Help() {
+  const router = useRouter();
+
   return (
     <>
       <Head>
@@ -16,32 +19,34 @@ export default function Help() {
       </Head>
 
       <main className="min-h-screen bg-gradient-to-br from-[#0d0d4d] via-[#03001c] to-[#260058] flex flex-col items-center justify-center px-6 py-16">
-        <div className="max-w-7xl mx-auto text-center">
-          <h1 className="text-5xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-300 via-purple-300 to-blue-300 mb-8">
-            Need Help with Social Media Automation?
-          </h1>
-          <p className="text-xl md:text-2xl text-gray-300 mb-16 leading-relaxed max-w-4xl mx-auto font-light">
-            {"Welcome to the Help Center! Whether you're new to our platform or need assistance navigating features, we're here to guide you. Explore our FAQs, contact support, or check out the resources below."}
-          </p>
+        <div className="w-full max-w-7xl mx-auto relative">
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
-            <Link
-              href="/Help/faq"
-              className="group p-8 bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl hover:bg-white/20 hover:transform hover:scale-105 transition-all duration-300 border border-white/20 flex flex-col items-center"
-              aria-label="View Frequently Asked Questions"
-            >
-              <div className="w-16 h-16 mb-6 bg-gradient-to-br from-pink-400 to-purple-500 rounded-full flex items-center justify-center">
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              <h2 className="text-2xl font-bold text-white mb-3">FAQs</h2>
-              <p className="text-gray-300 group-hover:text-white transition-colors">
-                Common questions and detailed answers.
-              </p>
-            </Link>
+          <div className="text-center">
+            <h1 className="text-5xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-300 via-purple-300 to-blue-300 mb-8">
+              Need Help with Social Media Automation?
+            </h1>
+            <p className="text-xl md:text-2xl text-gray-300 mb-16 leading-relaxed max-w-4xl mx-auto font-light">
+              {"Welcome to the Help Center! Whether you're new to our platform or need assistance navigating features, we're here to guide you. Explore our FAQs, contact support, or check out the resources below."}
+            </p>
 
-            <Link
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
+              <Link
+                href="/Help/faq"
+                className="group p-8 bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl hover:bg-white/20 hover:transform hover:scale-105 transition-all duration-300 border border-white/20 flex flex-col items-center"
+                aria-label="View Frequently Asked Questions"
+              >
+                <div className="w-16 h-16 mb-6 bg-gradient-to-br from-pink-400 to-purple-500 rounded-full flex items-center justify-center">
+                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <h2 className="text-2xl font-bold text-white mb-3">FAQs</h2>
+                <p className="text-gray-300 group-hover:text-white transition-colors">
+                  Common questions and detailed answers.
+                </p>
+              </Link>
+              
+              <Link
               href="/Help/guides"
               className="group p-8 bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl hover:bg-white/20 hover:transform hover:scale-105 transition-all duration-300 border border-white/20 flex flex-col items-center"
               aria-label="View Guides"
@@ -88,6 +93,7 @@ export default function Help() {
                 Tools and materials to boost productivity.
               </p>
             </Link>
+            </div>
           </div>
         </div>
 
@@ -99,3 +105,8 @@ export default function Help() {
     </>
   );
 }
+
+
+             
+           
+         

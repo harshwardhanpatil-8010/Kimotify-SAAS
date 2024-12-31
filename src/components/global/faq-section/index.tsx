@@ -58,9 +58,9 @@ export default function FAQSection() {
       <section className="bg-gradient-to-br from-gray-900 via-black to-blue-900 py-20 min-h-screen">
         <div className="max-w-5xl mx-auto px-6 sm:px-8 lg:px-10">
           <div className="text-center mb-16">
-            <h1 className="text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 mb-6 tracking-tight leading-tight">
+            <h2 className="text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 mb-6 tracking-tight leading-tight">
               Frequently Asked Questions
-            </h1>
+            </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
               Everything you need to know about Instagram DM Marketing and automation
             </p>

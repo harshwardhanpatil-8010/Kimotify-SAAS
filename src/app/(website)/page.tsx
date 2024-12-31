@@ -1,14 +1,14 @@
-import { Button } from '@/components/ui/button'
-import instagramlogo from '@/app/assets/instagram.png'
-import facebooklogo from '@/app/assets/facebook.png'
-import gmaillogo from '@/app/assets/gmail.png'
-import linkedinlogo from '@/app/assets/linkedin.png'
-import whatsapplogo from '@/app/assets/whatsapp.png'
-import youtubelogo from '@/app/assets/youtube.png'
-import twitterlogo from '@/app/assets/twitter.png'
-import telegramlogo from '@/app/assets/telegram.png'
-import salesforcelogo from '@/app/assets/salesforce.png'
-import slacklogo from '@/app/assets/slack.png'
+import { Button } from '@/components/ui/button';
+import instagramlogo from '@/app/assets/instagram.png';
+import facebooklogo from '@/app/assets/facebook.png';
+import gmaillogo from '@/app/assets/gmail.png';
+import linkedinlogo from '@/app/assets/linkedin.png';
+import whatsapplogo from '@/app/assets/whatsapp.png';
+import youtubelogo from '@/app/assets/youtube.png';
+import twitterlogo from '@/app/assets/twitter.png';
+import telegramlogo from '@/app/assets/telegram.png';
+import salesforcelogo from '@/app/assets/salesforce.png';
+import slacklogo from '@/app/assets/slack.png';
 import {
   Card,
   CardContent,
@@ -16,13 +16,13 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card'
-import { CheckCircle, ArrowRight, Sparkles } from 'lucide-react'
-import Image from 'next/image'
-import Link from 'next/link'
-import Footer from '@/components/global/footer'
-import FAQSection from '@/components/global/faq-section'
-import Head from 'next/head'
+} from '@/components/ui/card';
+import { CheckCircle, ArrowRight, Sparkles } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+import Footer from '@/components/global/footer';
+import FAQSection from '@/components/global/faq-section';
+import Head from 'next/head';
 
 export default function Home() {
   const plans = [
@@ -52,19 +52,30 @@ export default function Home() {
       cta: 'Upgrade Now',
       popular: true
     },
-  ]
+  ];
 
   return (
     <>
       <Head>
-        <title>KIMOTIFY - Supercharge Your Social Media Engagement</title>
-        <meta name="description" content="Elevate your audience engagement effortlessly by automating responses with KIMOTIFY. Turn every interaction into a potential business lead." />
-        <meta name="keywords" content="social media automation, engagement, AI responses, social media management" />
-        <meta property="og:title" content="KIMOTIFY - Social Media Engagement Platform" />
-        <meta property="og:description" content="Automate and enhance your social media engagement with AI-powered responses" />
+        <title>KIMOTIFY - Automate Your Social Media Engagement</title>
+        <meta name="description" content="Supercharge your social media engagement with KIMOTIFY. Automate DMs, comments, and build stronger audience connections effortlessly." />
+        <meta name="keywords" content="social media automation, AI responses, audience engagement, marketing automation, Instagram marketing" />
+        <meta property="og:title" content="KIMOTIFY - Automate Your Social Media Engagement" />
+        <meta property="og:description" content="Elevate your social media strategy with KIMOTIFY's automation tools. Engage with your audience like never before." />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
-        <link rel="canonical" href="https://kimotify.com" />
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="canonical" href="https://kimotify-saas.vercel.app" />
+        <link rel="robots" href="/robots.txt" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "http://schema.org",
+            "@type": "WebPage",
+            "name": "KIMOTIFY - Automate Your Social Media Engagement",
+            "description": "Supercharge your social media engagement with KIMOTIFY. Automate DMs, comments, and build stronger audience connections effortlessly.",
+            "url": "https://kimotify-saas.vercel.app",
+          })}
+        </script>
       </Head>
 
       <main className="antialiased">
@@ -85,35 +96,35 @@ export default function Home() {
 
             <div className="mx-auto mt-32 max-w-4xl text-center">
               <h1 className="text-5xl font-extrabold leading-tight text-white sm:text-6xl md:text-7xl lg:text-8xl mb-4 animate-fade-in tracking-tight">
-                Supercharge Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400">Social Media</span> Engagement
+                Automate Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400">Social Media</span> Engagement
               </h1>
               <p className="text-xl text-blue-200 max-w-2xl mx-auto leading-relaxed animate-fade-in-up opacity-90">
-                Elevate your audience engagement effortlessly by automating responses with KIMOTIFY, turning every interaction into a potential business lead.
+                Transform how you engage with your audience using KIMOTIFY. Automate your responses and focus on growing your brand.
               </p>
 
               <div className="mt-12 flex justify-center gap-6">
-                <Link href="/dashboard"  className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white hover:opacity-90 transition-all duration-300 transform hover:scale-105 px-10 py-3 text-lg rounded-xl shadow-lg ">
-                Get Started Free
+                <Link href="/dashboard" className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white hover:opacity-90 transition-all duration-300 transform hover:scale-105 px-10 py-3 text-lg rounded-xl shadow-lg">
+                  Get Started Free
                 </Link>
 
-                <Link href="/Help"  className="border-2 border-blue-400 hover:bg-blue-900/50 transition-all duration-300 transform hover:scale-105 px-10 py-3 text-lg rounded-xl backdrop-blur-sm ">
-                Know more
+                <Link href="/Help" className="border-2 border-blue-400 hover:bg-blue-900/50 transition-all duration-300 transform hover:scale-105 px-10 py-3 text-lg rounded-xl backdrop-blur-sm">
+                  Know more
                 </Link>
               </div>
             </div>
 
             <div className="flex justify-center items-center flex-wrap gap-12 mt-32 px-4 md:px-0 animate-fade-in">
-              {[instagramlogo, salesforcelogo, facebooklogo, linkedinlogo, gmaillogo, whatsapplogo, youtubelogo, twitterlogo,slacklogo, telegramlogo].map((logo, index) => (
-                <Image 
-                  key={index}
-                  src={logo} 
-                  alt="Platform Logo" 
-                  className="w-20 h-20 object-contain opacity-60 hover:opacity-100 transition-all duration-300 transform hover:scale-110 filter hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]"
-                  loading="lazy"
-                />
-              ))}
-            </div>
-            <div className="mt-36 mb-24">
+              {[instagramlogo, salesforcelogo, facebooklogo, linkedinlogo, gmaillogo, whatsapplogo, youtubelogo, twitterlogo, slacklogo, telegramlogo].map((logo, index) => (
+                       <Image 
+                              key={index}
+                              src={logo} 
+                              alt={`Platform Logo ${index}`} 
+                              className="w-20 h-20 object-contain opacity-60 hover:opacity-100 transition-all duration-300 transform hover:scale-110 filter hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]"
+                              loading="lazy"
+                             />
+                               ))}
+              </div>
+           <div className="mt-36 mb-24">
               <div className="text-center mb-16">
                 <h2 className="text-4xl font-bold tracking-tighter sm:text-6xl text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 mb-6">
                   Choose Your Plan
@@ -133,12 +144,10 @@ export default function Home() {
                   >
                     <CardHeader>
                       {plan.popular && (
-                    
-                    <div className="flex items-center text-purple-500 text-sm font-semibold mb-2 animate-pulse leading-none">
-                    <Sparkles className="h-5 w-5 leading-none mr-2" />
-                    MOST POPULAR
-                    </div>
-                  
+                        <div className="flex items-center text-purple-500 text-sm font-semibold mb-2 animate-pulse leading-none">
+                          <Sparkles className="h-5 w-5 leading-none mr-2" />
+                          MOST POPULAR
+                        </div>
                       )}
                       <CardTitle className="text-3xl text-white mb-2">{plan.name}</CardTitle>
                       <CardDescription className="text-blue-200/70 text-lg">{plan.description}</CardDescription>
@@ -195,5 +204,5 @@ export default function Home() {
         <Footer />
       </main>
     </>
-  )
+  );
 }
