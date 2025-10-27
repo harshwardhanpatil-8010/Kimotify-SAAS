@@ -1,55 +1,49 @@
-# PreciOps AI Generated Dockerfile
-# Stage 1: Install dependencies
-FROM oven/bun:1-slim AS deps
+# Stage 1: Install dependencies and base modules
+FROM oven/bun:1-slim AS base
 WORKDIR /app
 
-# Copy only necessary files for dependency installation to leverage Docker cache
-COPY package.json bun.lockb tsconfig.json ./ 
-COPY prisma ./prisma/
+# Copy package.json and bun.lockb
+COPY package.json bun.lockb ./
 
-# Install dependencies
+# Install all dependencies
 RUN bun install --frozen-lockfile
 
+
 # Stage 2: Build the application
-FROM deps AS builder
+FROM base AS build
 WORKDIR /app
 
-# Copy installed dependencies
-COPY --from=deps /app/node_modules ./node_modules
-
-# Copy the rest of the source code
+# Copy the rest of the application source code
 COPY . .
 
-# Generate Prisma Client (explicitly, as a best practice)
-# This is crucial for the Next.js build to find the client.
+# Generate Prisma client (ensures it's available for the build)
 RUN bunx prisma generate
 
-# Build the Next.js application for production
+# Build the Next.js application
 RUN bun run build
 
+
 # Stage 3: Production image
-FROM oven/bun:1-slim AS runner
+FROM oven/bun:1-slim AS production
 WORKDIR /app
 
 # Set the environment to production
 ENV NODE_ENV=production
-# The default Next.js port
-ENV PORT=3000
 
-# Create a non-root user for security
-RUN groupadd --system --gid 1001 nodejs
-RUN useradd --system --uid 1001 --gid 1001 nextjs
-USER nextjs
+# Copy only production dependencies from the 'base' stage
+COPY --from=base /app/node_modules ./node_modules
+COPY package.json bun.lockb ./
 
-# Copy necessary files from the builder stage
-COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
-COPY --from=builder --chown=nextjs:nodejs /app/node_modules ./node_modules
-COPY --from=builder --chown=nextjs:nodejs /app/package.json ./
-COPY --from=builder --chown=nextjs:nodejs /app/public ./public
+# Copy the built application from the 'build' stage
+COPY --from=build /app/.next ./.next
+COPY --from=build /app/public ./public
+COPY next.config.js ./
 
-# Expose the port the app runs on
+# Copy the generated Prisma client from the 'build' stage
+COPY --from=build /app/node_modules/.prisma ./node_modules/.prisma
+
+# Expose the port the app will run on
 EXPOSE 3000
 
 # The command to start the application
-# Assumes a "start" script in package.json, e.g., "start": "next start"
 CMD ["bun", "run", "start"]
