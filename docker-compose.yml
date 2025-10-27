@@ -1,70 +1,35 @@
-# PreciOps AI Generated docker-compose.yml
-
 version: '3.8'
 
 services:
-  # Main Next.js Application Service
   app:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: nextjs_app
-    # Restart policy for production
-    restart: unless-stopped
-    # Wait for the database to be ready and migrations to complete
-    depends_on:
-      db:
-        condition: service_healthy
-      migrate:
-        condition: service_completed_successfully
     ports:
       - "3000:3000"
-    # Use a .env file for local development or pass variables directly
-    env_file:
-      - .env
     environment:
-      - NODE_ENV=production
-      # This URL must match the credentials in the 'db' service
-      - DATABASE_URL=postgresql://user:password@db:5432/mydatabase?schema=public
-
-  # Database Migration Service
-  # This service runs once to apply migrations and then exits.
-  migrate:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: prisma_migrate
+      # Ensure this URL matches the credentials in the db service
+      - DATABASE_URL=postgresql://user:password@db:5432/mydb?schema=public
+      # Add other necessary environment variables for your application
+      # - NEXTAUTH_URL=http://localhost:3000
+      # - NEXTAUTH_SECRET=yoursecret
     depends_on:
-      db:
-        condition: service_healthy
-    env_file:
-      - .env
-    environment:
-      - DATABASE_URL=postgresql://user:password@db:5432/mydatabase?schema=public
-    # Command to apply database migrations
-    command: "bunx prisma migrate deploy"
+      - db
+    restart: unless-stopped
 
-  # PostgreSQL Database Service
   db:
-    image: postgres:15-alpine
-    container_name: postgres_db
+    image: postgres:15
     restart: always
     environment:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password
-      POSTGRES_DB: mydatabase
-    ports:
-      # Expose on 5433 locally to avoid conflicts with local Postgres
-      - "5433:5432"
+      POSTGRES_DB: mydb
     volumes:
       # Persist database data across container restarts
       - postgres_data:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U user -d mydatabase"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
+    # Uncomment the following lines to expose the database port to your host machine
+    # ports:
+    #   - "5432:5432"
 
 volumes:
   postgres_data:
-    driver: local
