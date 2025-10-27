@@ -1,31 +1,24 @@
-# PreciOps AI Generated .dockerignore
-
-# Git and version control
+# Version control
 .git
 .gitignore
 
-# Docker files
-Dockerfile
-.dockerignore
-docker-compose.yml
-
-# Node dependencies
+# Dependencies
 node_modules
 
-# Next.js build output
+# Build output
 .next
 
-# Environment variables (should be passed at runtime)
+# Environment variables
 .env
-.env.local
 .env.*
+!/.env.example
 
-# IDE and editor configurations
-.vscode/
-.idea/
+# Docker files
+Dockerfile
+docker-compose.yml
 
-# TypeScript cache
-*.tsbuildinfo
-
-# Test reports
-coverage/
+# Logs and temporary files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.DS_Store
