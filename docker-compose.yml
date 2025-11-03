@@ -1,3 +1,19 @@
+# PreciOps AI Auto-Generated docker-compose.yml
+# https://preciops.com
+#
+# This setup assumes you are using Prisma with a PostgreSQL database.
+# 1. Create a '.env' file in your project root.
+# 2. Add the following environment variables to your .env file:
+#
+#    DATABASE_URL="postgresql://user:password@db:5432/mydb?schema=public"
+#    POSTGRES_USER=user
+#    POSTGRES_PASSWORD=password
+#    POSTGRES_DB=mydb
+#
+# 3. Run 'docker-compose up --build' to start your services.
+# 4. To run migrations, open another terminal and run:
+#    'docker-compose exec app bunx prisma migrate dev'
+
 version: '3.8'
 
 services:
@@ -7,29 +23,21 @@ services:
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
-    environment:
-      # Ensure this URL matches the credentials in the db service
-      - DATABASE_URL=postgresql://user:password@db:5432/mydb?schema=public
-      # Add other necessary environment variables for your application
-      # - NEXTAUTH_URL=http://localhost:3000
-      # - NEXTAUTH_SECRET=yoursecret
+    env_file:
+      - .env
     depends_on:
       - db
     restart: unless-stopped
 
   db:
     image: postgres:15
-    restart: always
-    environment:
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: mydb
+    env_file:
+      - .env
     volumes:
-      # Persist database data across container restarts
       - postgres_data:/var/lib/postgresql/data
-    # Uncomment the following lines to expose the database port to your host machine
-    # ports:
-    #   - "5432:5432"
+    ports:
+      - "5432:5432" # Optional: expose db port to host for local tools
+    restart: unless-stopped
 
 volumes:
   postgres_data:
