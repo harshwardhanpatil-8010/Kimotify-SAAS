@@ -1,46 +1,63 @@
-# PreciOps AI Auto-Generated Dockerfile
-# https://preciops.com
+# PreciOps AI DevOps Agent
+# Dockerfile for Next.js, Bun, and Prisma Application
 
-# Stage 1: Install dependencies
-FROM oven/bun:1 as deps
+# ---- Base Stage ----
+# Get the official Bun image as a foundation. We use a specific slim version for security and size.
+# This stage is responsible for installing all dependencies.
+FROM oven/bun:1-slim AS base
 WORKDIR /app
 
-# Copy dependency definition files
-COPY package.json bun.lockb* tsconfig.json ./
-# Copy prisma schema for generation during install/build
-COPY prisma ./prisma/
+# Copy package.json and the lockfile to leverage Docker's layer caching.
+# Dependencies will only be re-installed if these files change.
+COPY package.json bun.lockb ./
 
-# Install dependencies
+# Install all dependencies, including devDependencies needed for the build.
 RUN bun install --frozen-lockfile
 
-# Stage 2: Build the application
-FROM deps as build
+
+# ---- Builder Stage ----
+# This stage builds the production-ready application.
+FROM base AS builder
 WORKDIR /app
+
+# Copy installed dependencies from the base stage.
+COPY --from=base /app/node_modules ./node_modules
+
+# Copy the rest of the application source code.
 COPY . .
 
-# The next.config.js triggers 'bunx prisma generate' during the build
+# Generate the Prisma client. This is required by the application code and the Next.js build process.
+RUN bunx prisma generate
+
+# Build the Next.js application. This will create an optimized production build.
+# The 'standalone' output mode is enabled by default in modern Next.js for containerization.
 RUN bun run build
 
-# Stage 3: Production image
-FROM oven/bun:1-slim as runner
+
+# ---- Production Stage ----
+# This is the final, small, and optimized image that will run in production.
+FROM oven/bun:1-slim AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production
 
-# Copy production dependencies definition
-COPY --from=build /app/package.json /app/bun.lockb* /app/tsconfig.json ./
+# Copy the standalone server output from the builder stage.
+# This includes a minimal server.js and necessary node_modules.
+COPY --from=builder /app/.next/standalone ./
 
-# Install production dependencies
-RUN bun install --production --frozen-lockfile
+# Copy the built static assets (CSS, JS, etc.).
+COPY --from=builder /app/.next/static ./.next/static
 
-# Copy production artifacts
-COPY --from=build /app/public ./public
-COPY --from=build /app/.next ./.next
-COPY --from=build /app/next.config.js ./
+# Copy the public assets (images, fonts, etc.).
+COPY --from=builder /app/public ./public
 
-# Expose the port the app runs on
+# Prisma needs the schema file at runtime to locate the query engine binaries.
+COPY --from=builder /app/prisma ./prisma
+
+# The Next.js app will run on port 3000 by default.
 EXPOSE 3000
+ENV PORT 3000
 
-# Set the default command to start the app
-# Assumes a 'start' script in your package.json, e.g., "start": "next start"
-CMD ["bun", "run", "start"]
+# The command to start the application server.
+# This runs the server.js file created by the standalone build.
+CMD ["bun", "server.js"]
