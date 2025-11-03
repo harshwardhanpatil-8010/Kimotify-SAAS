@@ -1,24 +1,24 @@
-# Version control
-.git
-.gitignore
+# PreciOps AI Auto-Generated .dockerignore
+# https://preciops.com
 
 # Dependencies
 node_modules
 
-# Build output
+# Build artifacts
 .next
 
-# Environment variables
+# Local environment files
 .env
-.env.*
-!/.env.example
+.env.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS-specific files
+.DS_Store
 
 # Docker files
 Dockerfile
 docker-compose.yml
-
-# Logs and temporary files
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.DS_Store
