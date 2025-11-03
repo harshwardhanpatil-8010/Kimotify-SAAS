@@ -1,49 +1,46 @@
-# Stage 1: Install dependencies and base modules
-FROM oven/bun:1-slim AS base
+# PreciOps AI Auto-Generated Dockerfile
+# https://preciops.com
+
+# Stage 1: Install dependencies
+FROM oven/bun:1 as deps
 WORKDIR /app
 
-# Copy package.json and bun.lockb
-COPY package.json bun.lockb ./
+# Copy dependency definition files
+COPY package.json bun.lockb* tsconfig.json ./
+# Copy prisma schema for generation during install/build
+COPY prisma ./prisma/
 
-# Install all dependencies
+# Install dependencies
 RUN bun install --frozen-lockfile
 
-
 # Stage 2: Build the application
-FROM base AS build
+FROM deps as build
 WORKDIR /app
-
-# Copy the rest of the application source code
 COPY . .
 
-# Generate Prisma client (ensures it's available for the build)
-RUN bunx prisma generate
-
-# Build the Next.js application
+# The next.config.js triggers 'bunx prisma generate' during the build
 RUN bun run build
 
-
 # Stage 3: Production image
-FROM oven/bun:1-slim AS production
+FROM oven/bun:1-slim as runner
 WORKDIR /app
 
-# Set the environment to production
 ENV NODE_ENV=production
 
-# Copy only production dependencies from the 'base' stage
-COPY --from=base /app/node_modules ./node_modules
-COPY package.json bun.lockb ./
+# Copy production dependencies definition
+COPY --from=build /app/package.json /app/bun.lockb* /app/tsconfig.json ./
 
-# Copy the built application from the 'build' stage
-COPY --from=build /app/.next ./.next
+# Install production dependencies
+RUN bun install --production --frozen-lockfile
+
+# Copy production artifacts
 COPY --from=build /app/public ./public
-COPY next.config.js ./
+COPY --from=build /app/.next ./.next
+COPY --from=build /app/next.config.js ./
 
-# Copy the generated Prisma client from the 'build' stage
-COPY --from=build /app/node_modules/.prisma ./node_modules/.prisma
-
-# Expose the port the app will run on
+# Expose the port the app runs on
 EXPOSE 3000
 
-# The command to start the application
+# Set the default command to start the app
+# Assumes a 'start' script in your package.json, e.g., "start": "next start"
 CMD ["bun", "run", "start"]
