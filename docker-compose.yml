@@ -1,43 +1,46 @@
-# PreciOps AI Auto-Generated docker-compose.yml
-# https://preciops.com
-#
-# This setup assumes you are using Prisma with a PostgreSQL database.
-# 1. Create a '.env' file in your project root.
-# 2. Add the following environment variables to your .env file:
-#
-#    DATABASE_URL="postgresql://user:password@db:5432/mydb?schema=public"
-#    POSTGRES_USER=user
-#    POSTGRES_PASSWORD=password
-#    POSTGRES_DB=mydb
-#
-# 3. Run 'docker-compose up --build' to start your services.
-# 4. To run migrations, open another terminal and run:
-#    'docker-compose exec app bunx prisma migrate dev'
+# PreciOps AI DevOps Agent
+# docker-compose.yml for local development
+# This file sets up the Next.js application and a PostgreSQL database.
 
 version: '3.8'
 
 services:
+  # The Next.js Application Service
   app:
     build:
       context: .
       dockerfile: Dockerfile
+    container_name: nextjs-app
+    restart: unless-stopped
     ports:
       - "3000:3000"
-    env_file:
-      - .env
     depends_on:
       - db
-    restart: unless-stopped
+    environment:
+      # This URL must point to the database service (db) within the Docker network.
+      - DATABASE_URL=postgresql://user:password@db:5432/mydb?schema=public
+      # Add other application-specific environment variables below
+      # - NEXT_PUBLIC_API_URL=http://localhost:3000/api
+    # The 'command' can be used to run database migrations before starting the app.
+    # Uncomment the line below after creating your first migration.
+    # command: sh -c "bunx prisma migrate deploy && bun server.js"
 
+  # The PostgreSQL Database Service
   db:
-    image: postgres:15
-    env_file:
-      - .env
+    image: postgres:15-alpine
+    container_name: postgres-db
+    restart: always
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: mydb
     volumes:
+      # Persist database data on the host machine
       - postgres_data:/var/lib/postgresql/data
     ports:
-      - "5432:5432" # Optional: expose db port to host for local tools
-    restart: unless-stopped
+      # Expose the database port to the host for external tools (optional)
+      - "5432:5432"
 
 volumes:
+  # Docker-managed volume for persisting database data
   postgres_data:
