@@ -1,23 +1,35 @@
-# Ignore directories
+# PreciOps AI DevOps Agent
+# .dockerignore for a Next.js project
+
+# Docker and git files
+Dockerfile
+docker-compose.yml
+.dockerignore
 .git
-.vscode
+.gitignore
+
+# Dependencies and build artifacts
 node_modules
 .next
 
-# Ignore files
-Dockerfile
-.dockerignore
-docker-compose.yml
-README.md
-
-# Ignore environment files
+# Local environment files (should be passed as secrets or env vars)
 .env
 .env.local
-.env.development
-.env.production
+.env.*.local
 
-# Ignore log files
+# Logs and temporary files
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-pnpm-debug.log*
+
+# IDE and OS-specific files
+.vscode
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+.DS_Store
+
+# Documentation
+README.md
