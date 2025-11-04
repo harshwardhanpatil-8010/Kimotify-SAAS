@@ -1,63 +1,54 @@
 # PreciOps AI DevOps Agent
-# Dockerfile for Next.js, Bun, and Prisma Application
+# Dockerfile for Next.js with Bun and Prisma
 
 # ---- Base Stage ----
-# Get the official Bun image as a foundation. We use a specific slim version for security and size.
-# This stage is responsible for installing all dependencies.
+# Get the base Bun image
 FROM oven/bun:1-slim AS base
 WORKDIR /app
 
-# Copy package.json and the lockfile to leverage Docker's layer caching.
-# Dependencies will only be re-installed if these files change.
+# ---- Dependencies Stage ----
+# Install dependencies
+FROM base AS deps
 COPY package.json bun.lockb ./
-
-# Install all dependencies, including devDependencies needed for the build.
 RUN bun install --frozen-lockfile
 
-
 # ---- Builder Stage ----
-# This stage builds the production-ready application.
+# Build the application
 FROM base AS builder
-WORKDIR /app
 
-# Copy installed dependencies from the base stage.
-COPY --from=base /app/node_modules ./node_modules
-
-# Copy the rest of the application source code.
+# Copy dependencies from the 'deps' stage
+COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# Generate the Prisma client. This is required by the application code and the Next.js build process.
+# Prisma requires the DATABASE_URL at build time to generate the client.
+# Pass it using --build-arg DATABASE_URL="your_database_url"
+ARG DATABASE_URL
 RUN bunx prisma generate
 
-# Build the Next.js application. This will create an optimized production build.
-# The 'standalone' output mode is enabled by default in modern Next.js for containerization.
+# Build the Next.js application.
+# This Dockerfile assumes you have `output: 'standalone'` in your next.config.js
+# to create a minimal production-ready server.
+ENV NEXT_TELEMETRY_DISABLED 1
 RUN bun run build
 
-
-# ---- Production Stage ----
-# This is the final, small, and optimized image that will run in production.
+# ---- Runner Stage ----
+# Create the final, minimal production image
 FROM oven/bun:1-slim AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production
-
-# Copy the standalone server output from the builder stage.
-# This includes a minimal server.js and necessary node_modules.
-COPY --from=builder /app/.next/standalone ./
-
-# Copy the built static assets (CSS, JS, etc.).
-COPY --from=builder /app/.next/static ./.next/static
-
-# Copy the public assets (images, fonts, etc.).
-COPY --from=builder /app/public ./public
-
-# Prisma needs the schema file at runtime to locate the query engine binaries.
-COPY --from=builder /app/prisma ./prisma
-
-# The Next.js app will run on port 3000 by default.
-EXPOSE 3000
+ENV NEXT_TELEMETRY_DISABLED 1
 ENV PORT 3000
 
-# The command to start the application server.
-# This runs the server.js file created by the standalone build.
-CMD ["bun", "server.js"]
+# Copy the required assets from the builder stage
+COPY --from=builder --chown=bun:bun /app/public ./public
+COPY --from=builder --chown=bun:bun /app/.next/static ./.next/static
+COPY --from=builder --chown=bun:bun /app/.next/standalone ./
+
+# Set the user to the non-root 'bun' user for security
+USER bun
+
+EXPOSE 3000
+
+# Start the server. The standalone output creates a server.js file.
+CMD ["node", "server.js"]

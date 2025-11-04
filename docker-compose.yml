@@ -1,46 +1,57 @@
 # PreciOps AI DevOps Agent
-# docker-compose.yml for local development
-# This file sets up the Next.js application and a PostgreSQL database.
+# docker-compose.yml for local development and testing
+# This setup includes the Next.js application and a PostgreSQL database for Prisma.
+#
+# Create a .env file in this directory with the following variables:
+# DATABASE_URL="postgresql://myuser:mypassword@db:5432/mydb"
+# DB_USER=myuser
+# DB_PASSWORD=mypassword
+# DB_NAME=mydb
+#
+# To run: docker-compose up --build
 
 version: '3.8'
 
 services:
-  # The Next.js Application Service
   app:
     build:
       context: .
       dockerfile: Dockerfile
+      # Pass DATABASE_URL at build time for 'prisma generate'
+      args:
+        DATABASE_URL: ${DATABASE_URL}
     container_name: nextjs-app
-    restart: unless-stopped
+    restart: always
     ports:
       - "3000:3000"
+    environment:
+      # Pass DATABASE_URL at runtime for the application
+      - DATABASE_URL=${DATABASE_URL}
+      - PORT=3000
     depends_on:
       - db
-    environment:
-      # This URL must point to the database service (db) within the Docker network.
-      - DATABASE_URL=postgresql://user:password@db:5432/mydb?schema=public
-      # Add other application-specific environment variables below
-      # - NEXT_PUBLIC_API_URL=http://localhost:3000/api
-    # The 'command' can be used to run database migrations before starting the app.
-    # Uncomment the line below after creating your first migration.
-    # command: sh -c "bunx prisma migrate deploy && bun server.js"
+    networks:
+      - app-network
 
-  # The PostgreSQL Database Service
   db:
     image: postgres:15-alpine
     container_name: postgres-db
     restart: always
     environment:
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: mydb
-    volumes:
-      # Persist database data on the host machine
-      - postgres_data:/var/lib/postgresql/data
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
     ports:
-      # Expose the database port to the host for external tools (optional)
       - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
 
 volumes:
-  # Docker-managed volume for persisting database data
   postgres_data:
+    driver: local
