@@ -63,3 +63,6 @@ Temporary Items
 .apdisk
 
 # End of https://mrkandreev.name/snippets/gitignore-generator/#macOS\\
+
+# clerk configuration (can include secrets)
+/.clerk/

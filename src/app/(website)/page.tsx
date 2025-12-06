@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
 import instagramlogo from '@/app/assets/instagram.png';
-import facebooklogo from '@/app/assets/facebook.png';
+//import facebooklogo from '@/app/assets/facebook.png';
 import gmaillogo from '@/app/assets/gmail.png';
 import linkedinlogo from '@/app/assets/linkedin.png';
 import whatsapplogo from '@/app/assets/whatsapp.png';
@@ -114,7 +114,7 @@ export default function Home() {
             </div>
 
             <div className="flex justify-center items-center flex-wrap gap-12 mt-32 px-4 md:px-0 animate-fade-in">
-              {[instagramlogo, salesforcelogo, facebooklogo, linkedinlogo, gmaillogo, whatsapplogo, youtubelogo, twitterlogo, slacklogo, telegramlogo].map((logo, index) => (
+              {[instagramlogo, salesforcelogo, linkedinlogo, gmaillogo, whatsapplogo, youtubelogo, twitterlogo, slacklogo, telegramlogo].map((logo, index) => (
                 <Image 
                   key={index}
                   src={logo} 

@@ -1,20 +1,43 @@
-import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server'
+import { NextRequest, NextResponse } from "next/server";
+import { getSessionUserFromRequest } from "@/lib/auth";
 
-const isProtectedRoute = createRouteMatcher([
-  '/dashboard(.*)',
-  '/api/payment(.*)',
-  '/callback(.*)',
-])
+const publicRoutes = ["/", "/api/auth/login", "/api/auth/register"];
 
-export default clerkMiddleware(async (auth, req) => {
-  if (isProtectedRoute(req)) await auth.protect()
-})
+export async function middleware(req: NextRequest) {
+  const url = req.nextUrl.pathname;
+
+  const isPublic = publicRoutes.some((route) => {
+    if (route.endsWith("/*")) {
+      const base = route.replace("/*", "");
+      return url.startsWith(base);
+    }
+    return url === route;
+  });
+
+  if (isPublic) {
+    return NextResponse.next();
+  }
+
+  if (url.startsWith("/api")) {
+    const user = await getSessionUserFromRequest(req);
+    if (!user) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+    return NextResponse.next();
+  }
+
+  if (url.startsWith("/dashboard")) {
+    const user = await getSessionUserFromRequest(req);
+    if (!user) {
+      const loginUrl = new URL("/", req.url);
+      loginUrl.searchParams.set("from", url);
+      return NextResponse.redirect(loginUrl);
+    }
+  }
+
+  return NextResponse.next();
+}
 
 export const config = {
-  matcher: [
-    // Skip Next.js internals and all static files, unless found in search params
-    '/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)',
-    // Always run for API routes
-    '/(api|trpc)(.*)',
-  ],
-}
+  matcher: ["/((?!_next/static|_next/image|favicon.ico|public).*)"],
+};

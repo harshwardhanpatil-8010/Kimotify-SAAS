@@ -1,22 +1,15 @@
-'use client'
-
-import AutomationReducer from '@/redux/slices/automation'
-import { TypedUseSelectorHook, useSelector } from 'react-redux'
-import { combineReducers, configureStore } from '@reduxjs/toolkit'
-
-const rootReducer = combineReducers({
-  AutomationReducer,
-})
+import { configureStore } from '@reduxjs/toolkit'
+import { useDispatch, useSelector, TypedUseSelectorHook } from 'react-redux'
+import automationReducer from './slices/automation'
 
 export const store = configureStore({
-  reducer: rootReducer,
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      serializableCheck: false,
-    }),
+  reducer: {
+    automation: automationReducer,
+  },
 })
 
 export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch
 
+export const useAppDispatch: () => AppDispatch = useDispatch
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
